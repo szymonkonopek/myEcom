@@ -9,6 +9,8 @@ public class Main {
         Greeter greeter = new Greeter();
         // greeter.great("Szymon");
 
+
+
         greeter.greetLadies(names);
 
         names.stream().
