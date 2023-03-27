@@ -47,8 +47,9 @@ public class CreditcardTest {
     void cantWithdrawOverLimit(){
         CreditCard card = new CreditCard("123-123");
 
-        card.assignCredit(BigDecimal.valueOf(10));
-        assertThrows(NotEnoughBalance.class, () -> card.withdraw(BigDecimal.valueOf(50)));
+        card.assignCredit(BigDecimal.valueOf(200));
+        card.assingLimit(BigDecimal.valueOf(100));
+        assertThrows(OverTheLimitWithdraw.class, () -> card.withdraw(BigDecimal.valueOf(150)));
     }
 
     @Test //3.2 Can’t withdraw when not enough money
