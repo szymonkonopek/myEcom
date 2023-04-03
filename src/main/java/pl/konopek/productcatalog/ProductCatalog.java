@@ -1,19 +1,22 @@
 package pl.konopek.productcatalog;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ProductCatalog {
-    private ArrayList<Product> products;
+    HashMapProductStorage productStorage;
     public ProductCatalog() {
-        this.products = loadDatabase();
+        this.productStorage = new HashMapProductStorage();
     }
-    public ArrayList<Product> allProducts() {
-        return products;
+    public List<Product> allProducts() {
+        return productStorage.allProducts();
+    }
+    public List<Product> loadAllPublishedProducts() {
+        return productStorage.loadAllPublishedProducts();
     }
 
-    //Fake loading from db
+        //Fake loading from db
     public ArrayList<Product> loadDatabase(){
         ArrayList<Product> database = new ArrayList<Product>();
         database.add(new Product(UUID.randomUUID(),"Name 1", "desc", "image",false,  BigDecimal.valueOf(1), "red", 1, 1));
@@ -24,44 +27,25 @@ public class ProductCatalog {
 
     //Seller -> Add product
     public String addProduct(String name, String desc, String image, Boolean isPublished, BigDecimal price, String color, int x, int y) {
-        Product newProduct = new Product(
-                UUID.randomUUID(),
-                name,
-                desc,
-                image,
-                isPublished,
-                price,
-                color,
-                x,
-                y
-        );
-        products.add(newProduct);
-
-        return newProduct.getId();
+        return productStorage.addProduct(name,desc,image,isPublished,price,color,x,y);
     }
 
     //ERP -> change price
     public void changePriceById(BigDecimal price, String id){
-        loadById(id).setPrice(price);
+        productStorage.changePriceById(price, id);
     }
 
     //ERP -> change image
     public void changeImageById(String image, String id){
-        loadById(id).setImage(image);
+        productStorage.changeImageById(image,id);
     }
 
     //ERP -> Publish product
     public void changeVisibilityById(Boolean isPublished, String id){
-        loadById(id).setIsPublished(isPublished);
+        productStorage.changeVisibilityById(isPublished,id);
     }
 
     public Product loadById(String productId) {
-        ArrayList <Product> allProducts = allProducts();
-        for (Product product : allProducts){
-            if (product.getId().equals(productId)){
-                return product;
-            }
-        }
-        return null;
+        return productStorage.loadById(productId);
     }
 }

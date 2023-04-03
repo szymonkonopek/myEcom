@@ -1,4 +1,4 @@
-package pl.konopek;
+package pl.konopek.other;
 
 import java.util.Arrays;
 import java.util.List;
