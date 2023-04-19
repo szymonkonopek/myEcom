@@ -4,8 +4,9 @@
     <title>Getting Started: Serving Web Content</title>
     <link href="/style.css" th:href="@{/style.css}" rel="stylesheet" />
 </head>
-<body>
-<p th:text="'Hello, ' + ${name} + '!'" />
-<h2 th:text="'Hellsssssso h2221'"> </h2>
-</body>
+    <body>
+        <div th:insert="navbar :: navbar"></div>
+        <p th:text="'Hello, ' + ${name} + '!'" />
+        <h2 th:text="'Hellsssssso h2221'"> </h2>
+    </body>
 </html>

@@ -1,0 +1,8 @@
+a{
+    text-decoration: none;
+}
+
+.items-container{
+    display: flex;
+    flex-direction: row;
+}
