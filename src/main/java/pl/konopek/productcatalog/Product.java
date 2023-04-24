@@ -54,7 +54,6 @@ public class Product {
     //JSON type sh*t
     public Map<String,Object> getProductInfo(){
         Map<String, Object> productInfo = new HashMap<>();
-        productInfo.put("uuid", this.uuid);
         productInfo.put("name", this.name);
         productInfo.put("desc", this.desc);
         productInfo.put("image", this.image);

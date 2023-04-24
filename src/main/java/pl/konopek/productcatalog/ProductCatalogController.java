@@ -14,6 +14,6 @@ public class ProductCatalogController {
     }
     @GetMapping("/api/products")
     List<Product> allProducts(){
-        return this.productCatalog.loadDatabase();
+        return this.productCatalog.allProducts();
     }
 }

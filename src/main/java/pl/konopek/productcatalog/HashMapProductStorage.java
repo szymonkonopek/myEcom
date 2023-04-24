@@ -59,6 +59,4 @@ public class HashMapProductStorage implements ProductStorage {
         return productStorage.get(productId);
     }
 
-
-
 }

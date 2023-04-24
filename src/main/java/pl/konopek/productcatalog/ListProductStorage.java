@@ -51,6 +51,6 @@ public class ListProductStorage implements ProductStorage {
 
     @Override
     public Product loadById(String productId) {
-        return productStorage.stream().filter(product -> product.getProductInfo().get("uuid") == productId).collect(Collectors.toList()).get(0);
+        return productStorage.stream().filter(product -> product.getId() == productId).collect(Collectors.toList()).get(0);
     }
 }
