@@ -7,29 +7,14 @@
 </head>
 <body>
 
-<ul  class="nav">
-	<li class="nav-item">
-		<a class="nav-link active" href="#">Active</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link" href="#">Link</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link" href="#">Link</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-	</li>
-</ul>
+<nav class="nav" th:fragment="navbar">
+	<div class="nav-item-container">
+		<a class="nav-item bold" href="/">Pixels</a>
+		<a class="nav-item" href="/">learn more</a>
+		<a class="nav-item last" href="/"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+	</div>
+</nav>
 
-<ul class="nav" th:fragment="navbar">
-	<li class="nav-item">
-		<a class="nav-link active" href="#">Home</a>
-	</li>
-	<li class="nav-item">
-		<a class="nav-link" href="#">Store</a>
-	</li>
-</ul>
 
 
 </body>
