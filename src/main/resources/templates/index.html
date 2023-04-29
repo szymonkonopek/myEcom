@@ -1,13 +1,22 @@
 <html>
-<head>
-    <title>This is index</title>
-    <link href="/style.css" rel="stylesheet" />
-</head>
-<body>
-<h2>Hello its my ebook store</h2>
-</body>
-<ul id="productList"></ul>
-<script type="text/javascript">
-
-</script>
+    <head>
+        <title>This is index</title>
+        <link href="/scss/style.css" rel="stylesheet" />
+        <link href="/scss/navbar.css" rel="stylesheet" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	</head>
+	<body>
+		<div th:insert="navbar :: navbar"></div>
+		<div class = "main">
+			<h2>Hello its my ssssssssss ebook store</h2>
+			<ul id="productList"></ul>
+			<script type="text/javascript">
+			
+			
+			</script>
+		</div>
+		<div th:insert="footer :: footer"></div>
+	
+    </body>
+    
 </html>

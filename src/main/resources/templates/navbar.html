@@ -3,22 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>NavigationBar</title>
-    <link href="/navbar.css" th:href="@{/navbar.css}" rel="stylesheet" />
+    <link href="/scss/navbar.css" th:href="@{/scss/navbar.css}" rel="stylesheet" />
 </head>
 <body>
 
-<nav th:fragment="navbar" class="navbar">
-    <div class="items-container">
-        <div class="item">
-            <a href="/">link</a>
-        </div>
-        <div class="item">
-            <a href="/">link</a>
-        </div>
-        <div class="item">
-            <a href="/">link</a>
-        </div>
-    </div>
-</nav>
+<ul  class="nav">
+	<li class="nav-item">
+		<a class="nav-link active" href="#">Active</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="#">Link</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="#">Link</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+	</li>
+</ul>
+
+<ul class="nav" th:fragment="navbar">
+	<li class="nav-item">
+		<a class="nav-link active" href="#">Home</a>
+	</li>
+	<li class="nav-item">
+		<a class="nav-link" href="#">Store</a>
+	</li>
+</ul>
+
 
 </body>
