@@ -1,7 +1,14 @@
 .nav-item-container {
+  position: fixed;
+  width: 100%;
+  background: white;
   display: flex;
   gap: 20px;
-  align-items: center; }
+  align-items: center;
+  padding: 27px;
+  box-shadow: 0px 16px 36px -28px #42445a;
+  border-bottom: 1px solid #c4c4c4;
+  height: 70px; }
   .nav-item-container a:last-of-type {
     margin-left: auto;
     font-size: 2em; }
@@ -9,6 +16,8 @@
     color: #020202;
     text-decoration: none;
     font-weight: lighter; }
+    .nav-item-container .nav-item .logo {
+      height: 58px; }
   .nav-item-container .bold {
     font-weight: bold;
     font-size: 1.5em; }
