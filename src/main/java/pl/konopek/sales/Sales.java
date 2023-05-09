@@ -25,7 +25,7 @@ public class Sales {
     }
 
     private Optional<ProductDetails> getProductDetails(String productId) {
-        return null;
+        return productDetailsProvider.loadCartForProduct(productId);
     }
 
     private Optional<Cart> loadForCustomer(String customerId) {

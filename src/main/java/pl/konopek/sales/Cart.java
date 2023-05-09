@@ -8,6 +8,7 @@ public class Cart {
     public void add(ProductDetails product) {
     }
 
-    public boolean itemsCount() {
+    public int itemsCount() {
+        return 0;
     }
 }

@@ -31,7 +31,7 @@ public class CollectingProducts {
 
     }
 
-    private void assertThereIsNProductsInCustomerCart(String customerId, int productCount) {
+    private void assertThereIsNProductsInCustomerCart(String customerId, int productsCount) {
         Cart customerCart = cartStorage.load(customerId).get();
         assert customerCart.itemsCount() == productsCount;
 
@@ -46,6 +46,6 @@ public class CollectingProducts {
     }
 
     private Sales thereIsSalesModule() {
-        return new Sales(cartStorage, new ProductDetailsProvider());
+        return new Sales(cartStorage, productDetailsProvider);
     }
 }
