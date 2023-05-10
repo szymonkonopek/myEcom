@@ -1,14 +1,21 @@
 package pl.konopek.sales;
 
+import java.util.List;
+
 public class Cart {
+    private final CartStorage cartStorage;
+    public Cart(){
+        this.cartStorage = new CartStorage();
+    }
     public static Cart empty() {
-        return new Cart();
+        return CartStorage.empty();
     }
 
-    public void add(ProductDetails product) {
+    public void add(ProductDetails productDetails) {
+        this.cartStorage.add(productDetails);
     }
 
     public int itemsCount() {
-        return 0;
+        return this.cartStorage.itemsCount();
     }
 }

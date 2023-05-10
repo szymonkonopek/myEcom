@@ -15,10 +15,10 @@ public class Sales {
         Cart customersCart = loadForCustomer(customerId)
                 .orElse(Cart.empty());
 
-        ProductDetails product = getProductDetails(productId)
+        ProductDetails productDetails = getProductDetails(productId)
                 .orElseThrow(() -> new NoSuchProductException());
 
-        customersCart.add(product);
+        customersCart.add(productDetails);
 
         cartStorage.save(customerId,customersCart);
 

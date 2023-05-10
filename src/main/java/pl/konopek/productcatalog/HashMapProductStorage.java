@@ -1,16 +1,14 @@
 package pl.konopek.productcatalog;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class HashMapProductStorage implements ProductStorage {
     Map<String, Product> productStorage;
     public HashMapProductStorage(){
-        this.productStorage = new HashMap<>();
+        this.productStorage = arrayListToHashMap(loadDatabase());
+        //this.productStorage = new HashMap<>();
     }
 
     @Override
@@ -19,7 +17,21 @@ public class HashMapProductStorage implements ProductStorage {
                 .stream()
                 .collect(Collectors.toList());
     }
-
+    @Override
+    public ArrayList<Product> loadDatabase(){
+        ArrayList<Product> database = new ArrayList<Product>();
+        database.add(new Product(UUID.fromString("2c4257c0-3549-4269-b9dd-526df1693260"),"Name 1", "desc", "image",false,  BigDecimal.valueOf(1), "red", 1, 1));
+        database.add(new Product(UUID.randomUUID(),"Name 2", "desc", "image",false, BigDecimal.valueOf(1), "red", 2, 1));
+        database.add(new Product(UUID.randomUUID(),"Name 3", "desc", "image", false, BigDecimal.valueOf(1), "red", 3, 1));
+        return database;
+    }
+    public HashMap<String,Product> arrayListToHashMap(ArrayList<Product> arrayList){
+        HashMap<String,Product> map = new HashMap<>();
+        for (Product product : arrayList) {
+            map.put(product.getId(),product);
+        }
+        return map;
+    }
     @Override
     public List<Product> loadAllPublishedProducts(){
         return productStorage.values().stream().filter(product -> (Boolean) product.getProductInfo().get("isPublished")).collect(Collectors.toList());

@@ -23,6 +23,7 @@ public class CollectingProducts {
         String productId = thereIsProduct();
         String customer = thereIsCustomer("Szymon");
 
+
         //Act
         sales.addToCart(customer, productId);
 
@@ -38,7 +39,8 @@ public class CollectingProducts {
     }
 
     private String thereIsProduct() {
-        return UUID.randomUUID().toString();
+        return "2c4257c0-3549-4269-b9dd-526df1693260";
+        //return UUID.randomUUID().toString();
     }
 
     private String thereIsCustomer(String customerID) {

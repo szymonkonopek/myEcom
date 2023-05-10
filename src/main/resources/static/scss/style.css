@@ -3,15 +3,19 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif; }
+  font-family: "Poppins", sans-serif;
+}
 
 body {
-  background: #f6f6f6; }
+  background: #f6f6f6;
+}
 
 h2 {
-  color: blue; }
+  color: blue;
+}
 
 .main {
-  min-height: 100vh; }
+  min-height: 100vh;
+}
 
 /*# sourceMappingURL=style.css.map */
