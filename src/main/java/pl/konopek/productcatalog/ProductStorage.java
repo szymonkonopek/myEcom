@@ -7,6 +7,7 @@ public interface ProductStorage {
     List<Product> allProducts();
 
     List<Product> loadAllPublishedProducts();
+    List<Product> loadDatabase();
 
     String addProduct(String name, String desc, String image, Boolean isPublished, BigDecimal price, String color, int x, int y);
 

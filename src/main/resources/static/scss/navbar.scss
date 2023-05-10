@@ -1,0 +1,34 @@
+$primary-text: #020202;
+
+.nav-item-container{
+  position: fixed;
+  width: 100%;
+  background: white;
+  display: flex;
+  gap:20px;
+  align-items: center;
+  padding: 27px;
+  box-shadow: 0px 16px 36px -28px rgba(66, 68, 90, 1);
+  border-bottom: 1px solid #c4c4c4;
+  height: 70px;
+
+  a:last-of-type {
+    margin-left: auto;
+    font-size: 2em;
+  }
+
+  .nav-item {
+    color: $primary-text;
+    text-decoration: none;
+    font-weight: lighter;
+
+    .logo{
+      height: 58px;
+    }
+  }
+
+  .bold{
+    font-weight: bold;
+    font-size: 1.5em;
+  }
+}

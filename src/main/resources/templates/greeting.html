@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Getting Started: Serving Web Content</title>
-    <link href="/style.css" th:href="@{/style.css}" rel="stylesheet" />
-</head>
+    <head>
+        <title>Getting Started: Serving Web Content</title>
+        <link href="/scss/style.css" th:href="@{/scss/style.css}" rel="stylesheet" />
+    </head>
     <body>
         <div th:insert="navbar :: navbar"></div>
         <p th:text="'Hello, ' + ${name} + '!'" />

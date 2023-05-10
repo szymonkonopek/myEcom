@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Bean;
 import pl.konopek.productcatalog.HashMapProductStorage;
 import pl.konopek.productcatalog.ProductCatalog;
 
+import java.math.BigDecimal;
+
 @SpringBootApplication
 
 public class App {
@@ -14,6 +16,8 @@ public class App {
     }
     @Bean
     ProductCatalog createProductCatalog(){
-        return new ProductCatalog();
+         ProductCatalog productCatalog = new ProductCatalog();
+         productCatalog.addProduct("item","item","lo",true, BigDecimal.valueOf(123),"red",2,2);
+         return productCatalog;
     }
 }

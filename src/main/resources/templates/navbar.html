@@ -3,22 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>NavigationBar</title>
-    <link href="/navbar.css" th:href="@{/navbar.css}" rel="stylesheet" />
+    <link href="/scss/navbar.css" th:href="@{/scss/navbar.css}" rel="stylesheet" />
 </head>
 <body>
 
-<nav th:fragment="navbar" class="navbar navbar-expand-md bg-dark navbar-dark">
-    <div class="items-container">
-        <div class="item">
-            <a href="/">link</a>
-        </div>
-        <div class="item">
-            <a href="/">link</a>
-        </div>
-        <div class="item">
-            <a href="/">link</a>
-        </div>
-    </div>
+<nav class="nav" th:fragment="navbar">
+	<div class="nav-item-container">
+		<a class="nav-item bold" href="/">
+			<img class ="logo" th:src="@{/images/logo2.png}"/>
+		</a>
+		<a class="nav-item" href="/">learn more</a>
+		<a class="nav-item last" href="/"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+	</div>
 </nav>
+
+
 
 </body>
