@@ -31,4 +31,8 @@ public class Sales {
     private Optional<Cart> loadForCustomer(String customerId) {
         return cartStorage.load(customerId);
     }
+
+    public Offer getCurrentOffer(String customer) {
+        return new Offer();
+    }
 }

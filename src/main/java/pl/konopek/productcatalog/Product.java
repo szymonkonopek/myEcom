@@ -15,7 +15,6 @@ public class Product {
     private final String color;
     private final int x;
     private final int y;
-
     public Product(UUID uuid, String name, String desc, String image, Boolean isPublished, BigDecimal price, String color, int x, int y) {
         this.uuid = uuid.toString();
         this.name = name;
@@ -26,6 +25,38 @@ public class Product {
         this.color = color;
         this.x = x;
         this.y = y;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public Boolean getPublished() {
+        return isPublished;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 
     public String getId() {

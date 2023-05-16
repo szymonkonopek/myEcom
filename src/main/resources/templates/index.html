@@ -10,13 +10,17 @@
 	
 	</head>
 	<body>
-		<div th:insert="navbar :: navbar"></div>
+<!--		<div th:insert="navbar :: navbar"></div>-->
 		<div class = "main">
+			<div class="cart">
+				<span class="total">...</span>
+				<span class="itemsCount">...</span>
+				<button>BUY</button>
+			</div>
 			<h2>Hello its ssssss ebook store</h2>
-			<ul id="productList"></ul>
-			<script type="text/javascript">
-			
-			
+			<ul id="productsList"></ul>
+			<script type="text/javascript" src="/scriptcs/index.js">
+
 			</script>
 		</div>
 		<div th:insert="footer :: footer"></div>

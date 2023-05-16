@@ -5,6 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import pl.konopek.productcatalog.HashMapProductStorage;
 import pl.konopek.productcatalog.ProductCatalog;
+import pl.konopek.sales.CartStorage;
+import pl.konopek.sales.ProductDetailsProvider;
+import pl.konopek.sales.Sales;
 
 import java.math.BigDecimal;
 
@@ -19,5 +22,10 @@ public class App {
          ProductCatalog productCatalog = new ProductCatalog();
          productCatalog.addProduct("item","item","lo",true, BigDecimal.valueOf(123),"red",2,2);
          return productCatalog;
+    }
+
+    @Bean
+    Sales createSales() {
+        return new Sales(new CartStorage(), new ProductDetailsProvider());
     }
 }
