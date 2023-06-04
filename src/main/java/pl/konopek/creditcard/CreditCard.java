@@ -3,57 +3,38 @@ package pl.konopek.creditcard;
 import java.math.BigDecimal;
 
 public class CreditCard {
-    String cardNumber;
-    BigDecimal balance;
-    Boolean isAssigned;
-    BigDecimal withdrawsInCycle;
-    BigDecimal limit;
-    public CreditCard(String s) {
-        this.cardNumber = s;
-        this.isAssigned = false;
-        this.withdrawsInCycle = BigDecimal.valueOf(0);
+    private BigDecimal balance;
+    private BigDecimal credit;
+
+    public CreditCard(String cardNumber) {
     }
 
-    public void assingLimit(BigDecimal ammount) {
-        if (ammount.compareTo(BigDecimal.valueOf(100)) < 0){ //
-            throw new CreditBelowThreshloldException();
+    public void assignCredit(BigDecimal creditAmount) {
+        if (isCreditAlreadyAssigned()) {
+            throw new LimitAssignedTwiceException();
         }
 
-        if (this.isAssigned){
-            throw new LimitWasAlreadySet();
+        if (isBelowCreditThreshold(creditAmount)) {
+            throw new CreditBelowThresholdException();
         }
 
-        this.limit = ammount;
-        this.isAssigned = true;
+        this.balance = creditAmount;
+        this.credit = creditAmount;
     }
 
-    public void assignCredit(BigDecimal ammount){this.balance = ammount;}
-
-    public void reassignLimit(BigDecimal ammount) {
-        if (ammount.compareTo(BigDecimal.valueOf(100)) < 0){ //
-            throw new CreditBelowThreshloldException();
-        }
-
-        this.limit = ammount;
+    private boolean isCreditAlreadyAssigned() {
+        return credit != null;
     }
 
-//    public BigDecimal getBalance() {return balance;}
-//    public BigDecimal getLimit() {return limit;}
+    private boolean isBelowCreditThreshold(BigDecimal creditAmount) {
+        return creditAmount.compareTo(BigDecimal.valueOf(100)) < 0;
+    }
 
-    public void withdraw(BigDecimal ammount){
-        if (this.balance.compareTo(ammount) < 0){
-            throw new NotEnoughBalance();
-        }
+    public BigDecimal getBalance() {
+        return balance;
+    }
 
-        if (ammount.compareTo(BigDecimal.valueOf(100)) > 0){
-            throw new OverTheLimitWithdraw();
-        }
-
-        if (withdrawsInCycle.compareTo(BigDecimal.valueOf(10)) > 0){
-            throw new TooManyWithdrawsInOneCycle();
-        }
-
-        this.balance = this.balance.subtract(ammount);
-        this.withdrawsInCycle = this.withdrawsInCycle.add(BigDecimal.valueOf(1));
+    public void withdraw(BigDecimal money) {
+        this.balance = balance.subtract(money);
     }
 }

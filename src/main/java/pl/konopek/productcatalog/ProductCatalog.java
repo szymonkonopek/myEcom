@@ -2,50 +2,59 @@ package pl.konopek.productcatalog;
 
 import java.math.BigDecimal;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class ProductCatalog {
-    HashMapProductStorage productStorage;
-    public ProductCatalog() {
-        this.productStorage = new HashMapProductStorage();
+    //Biznes
+    //Tech
+    ProductStorage productStorage;
+
+    public ProductCatalog(ProductStorage productStorage) {
+        this.productStorage = productStorage;
     }
+
     public List<Product> allProducts() {
         return productStorage.allProducts();
     }
-    public List<Product> loadAllPublishedProducts() {
-        return productStorage.loadAllPublishedProducts();
-    }
 
-        //Fake loading from db
-    public static ArrayList<Product> loadDatabase(){
-        ArrayList<Product> database = new ArrayList<Product>();
-        database.add(new Product(UUID.fromString("2c4257c0-3549-4269-b9dd-526df1693260"),"Name 1", "desc", "image",false,  BigDecimal.valueOf(1), "red", 1, 1));
-        database.add(new Product(UUID.randomUUID(),"Name 2", "desc", "image",false, BigDecimal.valueOf(1), "red", 2, 1));
-        database.add(new Product(UUID.randomUUID(),"Name 3", "desc", "image", false, BigDecimal.valueOf(1), "red", 3, 1));
-        return database;
-    }
+    public String addProduct(String name, String desc) {
+        Product newOne = new Product(
+                UUID.randomUUID(),
+                name,
+                desc
+        );
 
-    //Seller -> Add product
-    public String addProduct(String name, String desc, String image, Boolean isPublished, BigDecimal price, String color, int x, int y) {
-        return productStorage.addProduct(name,desc,image,isPublished,price,color,x,y);
-    }
-
-    //ERP -> change price
-    public void changePriceById(BigDecimal price, String id){
-        productStorage.changePriceById(price, id);
-    }
-
-    //ERP -> change image
-    public void changeImageById(String image, String id){
-        productStorage.changeImageById(image,id);
-    }
-
-    //ERP -> Publish product
-    public void changeVisibilityById(Boolean isPublished, String id){
-        productStorage.changeVisibilityById(isPublished,id);
+        productStorage.add(newOne);
+        return newOne.getId();
     }
 
     public Product loadById(String productId) {
         return productStorage.loadById(productId);
+    }
+
+    public void changePrice(String productId, BigDecimal newPrice) {
+        Product loaded = productStorage.loadById(productId);
+        loaded.changePrice(newPrice);
+    }
+
+    public void assignImage(String productId, String imageKey) {
+        Product loaded = productStorage.loadById(productId);
+        loaded.setImage(imageKey);
+    }
+
+    public List<Product> allPublishedProducts() {
+        return productStorage.allPublishedProducts();
+    }
+
+    public void publishProduct(String productId) {
+        Product loaded = loadById(productId);
+        if (loaded.getPrice() == null) {
+            throw new ProductCantBePublishedException();
+        }
+
+        if (loaded.getImageKey() == null) {
+            throw new ProductCantBePublishedException();
+        }
+
+        loaded.setOnline();
     }
 }
