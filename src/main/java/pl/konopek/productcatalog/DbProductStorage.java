@@ -2,14 +2,14 @@ package pl.konopek.productcatalog;
 
 import java.util.List;
 
-public class SqlProductStorage implements ProductStorage {
+public class DbProductStorage implements ProductStorage {
     @Override
     public List<Product> allProducts() {
         return null;
     }
 
     @Override
-    public void add(Product product) {
+    public void add(Product newProduct) {
 
     }
 

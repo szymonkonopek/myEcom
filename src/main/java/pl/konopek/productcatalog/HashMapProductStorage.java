@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class HashMapProductStorage implements ProductStorage {
-    Map<String, Product> products;
+    private Map<String, Product> products;
 
     public HashMapProductStorage() {
         this.products = new HashMap<>();
@@ -20,8 +20,8 @@ public class HashMapProductStorage implements ProductStorage {
     }
 
     @Override
-    public void add(Product product) {
-        products.put(product.getId(), product);
+    public void add(Product newProduct) {
+        products.put(newProduct.getId(), newProduct);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class HashMapProductStorage implements ProductStorage {
     public List<Product> allPublishedProducts() {
         return products.values()
                 .stream()
-                .filter(Product::isOnline)
+                .filter(Product::getOnline)
                 .collect(Collectors.toList());
     }
 }

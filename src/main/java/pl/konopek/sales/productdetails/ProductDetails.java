@@ -1,4 +1,4 @@
-package pl.konopek.sales.product;
+package pl.konopek.sales.productdetails;
 
 import java.math.BigDecimal;
 

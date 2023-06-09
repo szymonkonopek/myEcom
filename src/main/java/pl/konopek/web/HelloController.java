@@ -1,12 +1,13 @@
-package pl.konopek;
+package pl.konopek.web;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloController {
+
     @GetMapping("/hello")
     String hello() {
-        return "Hello World :)";
+        return "Hello World";
     }
 }

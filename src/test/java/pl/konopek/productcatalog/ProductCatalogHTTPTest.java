@@ -8,27 +8,24 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ProductCatalogHTTPTest {
+@SpringBootTest(
+        webEnvironment =
+                SpringBootTest.WebEnvironment.RANDOM_PORT)
+public class ProductCatalogHttpTest {
     @LocalServerPort
     int port;
     @Autowired
     TestRestTemplate http;
 
     @Test
-    void itLoadsIndex() {
-        String url = String.format("http://localhost:%s", port);
+    void itShowsDefaultProducts() {
+        String url = String.format(
+        "http://localhost:%s/api/products",
+            this.port
+        );
 
-        ResponseEntity<String> response = http.getForEntity(url, String.class);
-
-        assert response.getStatusCode().equals(HttpStatus.OK);
-    }
-
-    @Test
-    void itLoadsProducts() {
-        String url = String.format("http://localhost:%s/api/products", port);
-
-        ResponseEntity<String> response = http.getForEntity(url, String.class);
+        ResponseEntity<Product[]> response =
+                http.getForEntity(url, Product[].class);
 
         assert response.getStatusCode().equals(HttpStatus.OK);
     }

@@ -8,7 +8,7 @@ public class Product {
     private final String name;
     private final String desc;
     private BigDecimal price;
-    private String imageKey;
+    private String image;
     private boolean online;
 
     public Product(UUID uuid, String name, String desc) {
@@ -21,37 +21,37 @@ public class Product {
         return uuid;
     }
 
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void changePrice(BigDecimal newPrice) {
-
-        price = newPrice;
-    }
-
-    public String getImageKey() {
-        return imageKey;
-    }
-
-    public void setImage(String imageKey) {
-
-        this.imageKey = imageKey;
-    }
-
-    public void setOnline() {
-        this.online = true;
-    }
-
-    public boolean isOnline() {
-        return online;
+    public UUID getUUID() {
+        return UUID.fromString(uuid);
     }
 
     public String getName() {
         return name;
     }
 
-    public String getDesc() {
-        return desc;
+    public void changePrice(BigDecimal newPrice) {
+        price = newPrice;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String imageKey) {
+
+        image = imageKey;
+    }
+
+    public void setOnline(boolean online) {
+
+        this.online = online;
+    }
+
+    public boolean getOnline() {
+        return online;
     }
 }

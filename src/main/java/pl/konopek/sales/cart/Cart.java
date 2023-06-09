@@ -1,26 +1,54 @@
 package pl.konopek.sales.cart;
 
-import pl.konopek.sales.product.ProductDetails;
-
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Cart {
-    List<String> products;
+
+    private final HashMap<String, Integer> productsQuantities;
 
     public Cart() {
-        this.products = new ArrayList<>();
+        productsQuantities = new HashMap<>();
     }
 
     public static Cart empty() {
         return new Cart();
     }
 
-    public void add(ProductDetails product) {
-        products.add(product.getId());
+    public void add(String product) {
+        if (!isInCart(product)) {
+            putIntoCart(product);
+        } else {
+            increaseProductQuantity(product);
+        }
     }
 
-    public int itemsCount() {
-        return 0;
+    public boolean isEmpty() {
+        return productsQuantities.values().isEmpty();
+    }
+
+    public int getItemsCount() {
+        return productsQuantities.values().size();
+    }
+
+    public List<CartItem> getCartItems() {
+        return productsQuantities
+                .entrySet()
+                .stream()
+                .map(es -> new CartItem(es.getKey(), es.getValue()))
+                .collect(Collectors.toList());
+    }
+
+    private void putIntoCart(String product) {
+        productsQuantities.put(product, 1);
+    }
+
+    private void increaseProductQuantity(String product) {
+        productsQuantities.put(product, productsQuantities.get(product) + 1);
+    }
+
+    private boolean isInCart(String product) {
+        return productsQuantities.containsKey(product);
     }
 }
