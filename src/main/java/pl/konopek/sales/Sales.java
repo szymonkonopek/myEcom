@@ -6,9 +6,16 @@ import pl.konopek.sales.offering.EveryNItemLineDiscountPolicy;
 import pl.konopek.sales.offering.Offer;
 import pl.konopek.sales.offering.OfferCalculator;
 import pl.konopek.sales.offering.TotalDiscountPolicy;
+import pl.konopek.sales.payment.PaymentData;
+import pl.konopek.sales.payment.PaymentGateway;
+import pl.konopek.sales.payment.RegisterPaymentRequest;
 import pl.konopek.sales.productdetails.NoSuchProductException;
 import pl.konopek.sales.productdetails.ProductDetails;
 import pl.konopek.sales.productdetails.ProductDetailsProvider;
+import pl.konopek.sales.reservation.OfferAcceptanceRequest;
+import pl.konopek.sales.reservation.Reservation;
+import pl.konopek.sales.reservation.ReservationDetails;
+import pl.konopek.sales.reservation.InMemoryReservationStorage;
 
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -17,11 +24,21 @@ public class Sales {
     private CartStorage cartStorage;
     private ProductDetailsProvider productDetailsProvider;
     private final OfferCalculator offerCalculator;
+    private PaymentGateway paymentGateway;
+    private InMemoryReservationStorage reservationStorage;
 
-    public Sales(CartStorage cartStorage, ProductDetailsProvider productDetails, OfferCalculator offerCalculator) {
+    public Sales(
+            CartStorage cartStorage,
+            ProductDetailsProvider productDetails,
+            OfferCalculator offerCalculator,
+            PaymentGateway paymentGateway,
+            InMemoryReservationStorage reservationStorage
+        ) {
         this.cartStorage = cartStorage;
         this.productDetailsProvider = productDetails;
         this.offerCalculator = offerCalculator;
+        this.paymentGateway = paymentGateway;
+        this.reservationStorage = reservationStorage;
     }
 
     public void addToCart(String customerId, String productId) {
@@ -57,7 +74,15 @@ public class Sales {
         return offer;
     }
 
-    public void acceptOffer() {
+    public ReservationDetails acceptOffer(String customerId, OfferAcceptanceRequest request) {
+        Offer offer = this.getCurrentOffer(customerId);
 
+        PaymentData payment = paymentGateway.register(RegisterPaymentRequest.of(request, offer));
+
+        Reservation reservation = Reservation.of(request, offer, payment);
+
+        reservationStorage.save(reservation);
+
+        return new ReservationDetails(reservation.getId(), reservation.getPaymentUrl());
     }
 }

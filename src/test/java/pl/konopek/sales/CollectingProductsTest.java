@@ -7,8 +7,10 @@ import pl.konopek.sales.cart.CartStorage;
 import pl.konopek.sales.offering.Offer;
 import pl.konopek.sales.offering.OfferCalculator;
 import pl.konopek.sales.offering.OfferLine;
+import pl.konopek.sales.payment.SpyPaymentGateway;
 import pl.konopek.sales.productdetails.InMemoryProductDetailsProvider;
 import pl.konopek.sales.productdetails.ProductDetails;
+import pl.konopek.sales.reservation.InMemoryReservationStorage;
 
 import java.math.BigDecimal;
 import java.util.UUID;
@@ -106,7 +108,13 @@ public class CollectingProductsTest {
     }
 
     private Sales thereIsSalesModule() {
-        return new Sales(cartStorage, productDetails, new OfferCalculator(productDetails));
+        return new Sales(
+                cartStorage,
+                productDetails,
+                new OfferCalculator(productDetails),
+                new SpyPaymentGateway(),
+                new InMemoryReservationStorage()
+        );
     }
 
 }

@@ -1,4 +1,44 @@
 body {
-    background: #fff;
-    color: blue;
+}
+
+#productsList {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+}
+
+.product {
+    max-height: 15rem;
+    max-width: 25%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.product img {
+    max-height: 25rem;
+    max-width: 100%;
+}
+
+product span {
+
+}
+
+#checkout {
+    z-index: 9999;
+    padding: 5rem;
+    top: -50rem;
+    background: bisque;
+    width: 100%;
+    display: flex;
+    position: absolute;
+    justify-content: space-around;
+}
+
+.hidden {
+    top: -50rem;
+}
+
+.shown {
+    top: 0rem !important;
 }

@@ -36,7 +36,7 @@ const createProductComponent = (product) => {
         <li class="product">
             <span class="product__description">${product.name}</span>
             <div class="product__image-container">
-                <img class="product__image" src="${product.picture}"/>
+                <img class="product__image" src="${product.image}"/>
             </div>
             <span class="product__price">${product.price}</span>
             <button
@@ -80,9 +80,33 @@ const initializeEcommerce = async () => {
 
 }
 
+const acceptOfferBtn = document.querySelector('.acceptOffer');
+const checkoutLayerEl = document.querySelector('#checkout');
+const checkoutForm = document.querySelector('#checkout form');
+checkoutForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const data = new FormData(checkoutForm);
+    let request = {};
+    for (let [key, value] of data) {
+        request[key] = value;
+    }
+
+    fetch("/api/accept-offer", {
+        method: 'POST',
+        body: JSON.stringify(request),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then(r => r.json())
+        .then(data => window.location.href = data.paymentUrl);
+})
+acceptOfferBtn.addEventListener('click', () => {
+    checkoutLayerEl.classList.add('shown');
+});
 
 (() => {
-    console.log("My ebook store works");
     initializeEcommerce()
         .then(r => {});
 })();
