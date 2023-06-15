@@ -1,0 +1,114 @@
+$mobile: 450px;
+
+body {
+  margin: 44px 0 0 0;
+  box-sizing: border-box;
+  padding: 0;
+  font-family: 'SF UI Text', sans-serif;
+}
+
+nav{
+  height: 44px;
+  position: fixed;
+  background: rgba(22, 22, 23, .8);
+  top: 0px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  align-items: center;
+  gap: 40px;
+
+  .nav-item{
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: -.01em;
+    line-height: 1;
+    text-decoration: none;
+    color: rgb(255,255,255,0.8);
+
+  }
+
+  a{
+    text-decoration: none;
+    color: rgb(255,255,255,0.8);
+  }
+
+  button{
+    display: none;
+  }
+
+  img {
+    height: 30px;
+  }
+}
+
+.black{
+  background: black !important;
+}
+
+.block{
+  padding-top: 100px;
+  height: 692px;
+  background:#fbfbfd ;
+
+
+
+  img{
+    padding-top: 50px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 60vw;
+    max-height: 400px;
+    min-width: 290px;
+  }
+
+  .title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 56px;
+    line-height: 1.07143;
+    font-weight: 600;
+    letter-spacing: -.005em;
+    padding-bottom: 10px;
+  }
+
+  .desc{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    line-height: 1.1043;
+    font-weight: 400;
+    letter-spacing: .004em;
+    @media screen and (max-width: $mobile) {
+      font-size: 20px;
+    }
+  }
+
+  .white{
+    color: white !important;
+  }
+
+  .buy{
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    line-height: 1.1043;
+    font-weight: 400;
+    letter-spacing: .004em;
+    gap: 50px;
+
+    a{
+      color:#06c;
+      text-decoration: none;
+    }
+  }
+
+}

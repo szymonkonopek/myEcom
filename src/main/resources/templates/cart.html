@@ -1,0 +1,60 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.cdnfonts.com/css/sf-ui-text-2" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css" >
+  <link rel="stylesheet" href="/css/productBlock.css" >
+    <link rel="stylesheet" href="/css/cart.css" >
+
+
+</head>
+<body>
+<header>
+    <nav>
+        <a class="nav-item" href="/">
+            <img src="image/logo.png">
+        </a>
+        <a class="nav-item" href="/lego">
+            Lego
+        </a>
+        <a class="nav-item" href="/fruits">
+            Fruits
+        </a>
+        <a class="nav-item" href="paper-clip">
+            Paper clip
+        </a>
+        <a class="nav-item" href="https://www.linkedin.com/in/szymon-konopek/">
+            SK
+        </a>
+    </nav>
+</header>
+
+<!--      <div>-->
+<!--          <ul id="productsList"></ul>-->
+<!--      </div>-->
+<div class="offer nav-item cart">
+    <div class="price">
+        <span>Total for items in the bag : </span><a class="total" href="/cart"></a><span></span>
+    </div>
+    <span class="itemsCount"></span>
+    <button class="acceptOffer">Checkout</button>
+
+    <div id="checkout">
+        <form>
+            <div class="input-group contact">
+                <div class="form-text">Check out with your ID</div>
+                <input class="form-control" placeholder="Tim" name="firstname" required/>
+                <input class="form-control" placeholder="Cook" name="lastname" required/>
+                <input class="form-control" placeholder="lethimcook@apple.com" name="email" required type="email"/>
+                <button type="submit">BUY</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+<script th:src="@{scripts/index.js}"></script>
+</body>
+</html>

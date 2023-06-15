@@ -54,4 +54,8 @@ public class Product {
     public boolean getOnline() {
         return online;
     }
+
+    public String getDesc(){
+        return this.desc;
+    }
 }

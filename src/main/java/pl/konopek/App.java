@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import pl.konopek.payu.PayU;
 import pl.konopek.payu.PayUApiCredentials;
 import pl.konopek.productcatalog.HashMapProductStorage;
@@ -32,18 +33,18 @@ public class App {
     ProductCatalog createNewProductCatalog() {
         ProductCatalog productCatalog = new ProductCatalog(new HashMapProductStorage());
 
-        String productId1 = productCatalog.addProduct("Applying UML and Patterns", "Craig Larman");
-        productCatalog.assignImage(productId1, "/image/book_1.jpg");
+        String productId1 = productCatalog.addProduct("Falcon Millennium", "/lego");
+        productCatalog.assignImage(productId1, "/image/lego_set.png");
         productCatalog.changePrice(productId1, BigDecimal.TEN);
         productCatalog.publishProduct(productId1);
 
-        String productId2 = productCatalog.addProduct("Clean Code", "Robert Martin");
-        productCatalog.assignImage(productId2, "/image/book_2.jpg");
+        String productId2 = productCatalog.addProduct("Orange", "/fruits");
+        productCatalog.assignImage(productId2, "/image/orange.jpg");
         productCatalog.changePrice(productId2, BigDecimal.valueOf(20.20));
         productCatalog.publishProduct(productId2);
 
-        String productId3 = productCatalog.addProduct("Domain-Driven Design", "Eric Evans");
-        productCatalog.assignImage(productId3, "/image/book_3.jpg");
+        String productId3 = productCatalog.addProduct("Paper clip", "/paper-clip");
+        productCatalog.assignImage(productId3, "/image/paperclips.jpg");
         productCatalog.changePrice(productId3, BigDecimal.valueOf(30.30));
         productCatalog.publishProduct(productId3);
 

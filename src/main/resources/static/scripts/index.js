@@ -4,6 +4,18 @@ const getProducts = () => {
         .catch((error) => console.log(error))
 };
 
+const getSortedProducts = async (descr) => {
+    const products = await getProducts();
+    let sortedProducts = []
+    products.map(p => {
+        if (p.desc == descr){
+            sortedProducts.push(p);
+            console.log(p.name)
+        }
+    })
+    return sortedProducts;
+}
+
 const getCurrentOffer = () => {
     return fetch("/api/current-offer")
         .then((response) => response.json())
@@ -20,7 +32,7 @@ const refreshCurrentOffer = async () => {
     const offerEl = document.querySelector('.offer');
 
     offerEl.querySelector('.total').textContent = `${offer.total} PLN`;
-    offerEl.querySelector('.itemsCount').textContent = `${offer.productsCount} items`;
+    //offerEl.querySelector('.itemsCount').textContent = `${offer.productsCount} items`;
 
 }
 
@@ -33,19 +45,57 @@ const createHtmlElFromString = (template) => {
 
 const createProductComponent = (product) => {
     const template = `
-        <li class="product">
-            <span class="product__description">${product.name}</span>
-            <div class="product__image-container">
-                <img class="product__image" src="${product.image}"/>
-            </div>
-            <span class="product__price">${product.price}</span>
-            <button
-                class="product__add-to-cart"
-                data-product-id="${product.id}"
-            >
-                Add to cart
-            </button>
-        </li>
+        <div>
+        <div class="product-block">
+            <div class="name">Buy ${product.name}</div>
+            <div class="name-price">${product.price} PLN</div>
+            <div class="options">
+                 <div class="img-container">
+                    <img src="${product.image}"/>
+                </div>
+                <div class="specs">
+                    <div class="spec">
+                        <span class="info">Personalize your ${product.name}</span>
+                        <label class="container">
+                          <input type="radio" checked="checked" name="radio">
+                          <span class="checkmark"></span>
+                          <span class="text">${product.name}</span>
+                        </label>
+                        <label class="container">
+                          <input type="radio" name="radio">
+                          <span class="checkmark"></span>
+                          <span class="text">${product.name} Pro</span>
+                        </label>
+                   </div>
+                   <div class="spec">
+                        <span class="info">Choose your storage</span>
+                        <label class="container">
+                          <input type="radio" checked="checked" name="radio2">
+                          <span class="checkmark"></span>
+                          <span class="text">128 GB</span>
+                        </label>
+                        <label class="container">
+                          <input type="radio" name="radio2">
+                          <span class="checkmark"></span>
+                          <span class="text">256 GB</span>
+                        </label>
+                        <label class="container">
+                          <input type="radio" name="radio2">
+                          <span class="checkmark"></span>
+                          <span class="text">512 GB</span>
+                        </label>
+                 </div>
+                 </div>
+     </div>
+     </div>
+         <div class="buy">
+              <div>
+              <div class="title">Your new ${product.name}</div>
+              <div class="price">${product.price} PLN</div>
+              </div>
+             <button data-product-id="${product.id}">Add to cart</button>
+         </div>
+     </div>            
     `;
 
     return createHtmlElFromString(template);
@@ -68,11 +118,15 @@ const initializeAddToCartHandler = (el) => {
 
 const initializeEcommerce = async () => {
     await refreshCurrentOffer();
+    const {
+        host, hostname, href, origin, pathname, port, protocol, search
+    } = window.location
+
+    console.log(pathname);
 
     const productsList = document.querySelector('#productsList');
-    const products = await getProducts();
-    products
-        .map(p => createProductComponent(p))
+    const products = await getSortedProducts(pathname);
+    products.map(p => createProductComponent(p))
         .map(productEl => initializeAddToCartHandler(productEl))
         .forEach(productEl => {
             productsList.appendChild(productEl)

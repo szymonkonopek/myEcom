@@ -1,0 +1,64 @@
+.cart{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+  gap: 20px;
+  font-family: SF Pro Display,SF Pro Icons,AOS Icons,Helvetica Neue,Helvetica,Arial,sans-serif;
+
+  .price{
+    font-size: 40px;
+    line-height: 1.1;
+    font-weight: 600;
+    padding-bottom: 2px;
+  }
+
+  a{
+    text-decoration: none;
+    color: black;
+  }
+}
+
+.contact{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .form-text{
+    font-size: 24px;
+    line-height: 1.16667;
+    font-weight: 600;
+    letter-spacing: .009em;
+    color: #494949;
+    margin-bottom: 25px;
+  }
+
+  .form-control{
+    height: 44px;
+    width: 328px;
+    padding: 25px;
+    border: 1px solid #b9b9b9;
+    border-radius: 5px;
+  }
+  button{
+    margin-top: 20px;
+    height: 46px;
+    width: 260px;
+    text-align: center;
+    white-space: nowrap;
+    font-size: 17px;
+    line-height: 1.17648;
+    font-weight: 400;
+    letter-spacing: -.022em;
+    min-width: 30px;
+    padding: 7px 15px;
+    background: #0071e3;
+    color: #fff;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+}
+.acceptOffer{
+  display: none;
+}

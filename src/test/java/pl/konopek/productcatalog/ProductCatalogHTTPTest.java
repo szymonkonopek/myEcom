@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 @SpringBootTest(
         webEnvironment =
                 SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class ProductCatalogHttpTest {
+public class ProductCatalogHTTPTest {
     @LocalServerPort
     int port;
     @Autowired

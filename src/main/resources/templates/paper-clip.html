@@ -1,0 +1,54 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.cdnfonts.com/css/sf-ui-text-2" rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css" >
+  <link rel="stylesheet" href="/css/productBlock.css" >
+
+</head>
+<body>
+<header>
+    <nav>
+        <a class="nav-item" href="/">
+            <img src="image/logo.png">
+        </a>
+        <a class="nav-item" href="/lego">
+            Lego
+        </a>
+        <a class="nav-item" href="/fruits">
+            Fruits
+        </a>
+        <a class="nav-item" href="paper-clip">
+            Paper clip
+        </a>
+        <a class="nav-item" href="https://www.linkedin.com/in/szymon-konopek/">
+            SK
+        </a>
+        <div class="offer nav-item">
+            <a class="total" href="/cart"></a>
+            <span class="itemsCount"></span>
+            <button class="acceptOffer">Checkout</button>
+        </div>
+    </nav>
+</header>
+
+<!--      <div>-->
+<!--          <ul id="productsList"></ul>-->
+<!--      </div>-->
+
+        <div id="productsList"></div>
+
+
+<div id="checkout" style="display: none">
+    <form>
+        <div class="input-group">
+            <input class="form-control" placeholder="John" name="firstname" required/>
+            <input class="form-control" placeholder="Doe" name="lastname" required/>
+            <input class="form-control" placeholder="john@doe.com" name="email" required type="email"/>
+            <button type="submit">BUY</button>
+        </div>
+    </form>
+</div>
+<script th:src="@{scripts/index.js}"></script>
+</body>
+</html>
