@@ -1,8 +1,30 @@
-const getProducts = () => {
-    return fetch("/api/products")
-        .then((response) => response.json())
-        .catch((error) => console.log(error))
-};
+//initializeEcommerce is the first function (initialized at the bottom of index.js)
+const initializeEcommerce = async () => {
+    await refreshCurrentOffer(); //Downloads current offer and updates total price in PLN (using document.querySelecotor)
+    const {
+        host, hostname, href, origin, pathname, port, protocol, search
+    } = window.location
+
+    console.log(pathname);
+
+    const productsList = document.querySelector('#productsList');
+    const products = await getSortedProducts(pathname); //get products that match current pathname
+    products.map(p => createProductComponent(p)) //product component looks exactly the same for every item,
+        .map(productEl => initializeAddToCartHandler(productEl)) //search for button in productComponent and wait for click, and add total amount to cart
+        .forEach(productEl => {
+            productsList.appendChild(productEl)
+        });
+
+}
+
+const refreshCurrentOffer = async () => {
+    const offer = await getCurrentOffer();
+    const offerEl = document.querySelector('.offer');
+
+    offerEl.querySelector('.total').textContent = `${offer.total} PLN`;
+    //offerEl.querySelector('.itemsCount').textContent = `${offer.productsCount} items`;
+
+}
 
 const getSortedProducts = async (descr) => {
     const products = await getProducts();
@@ -16,10 +38,20 @@ const getSortedProducts = async (descr) => {
     return sortedProducts;
 }
 
+
 const getCurrentOffer = () => {
     return fetch("/api/current-offer")
         .then((response) => response.json())
 }
+
+const getProducts = () => {
+    return fetch("/api/products")
+        .then((response) => response.json())
+        .catch((error) => console.log(error))
+};
+
+
+
 
 const handleAddToCart = (productId) => {
     return fetch(`/api/cart/${productId}`, {
@@ -27,14 +59,7 @@ const handleAddToCart = (productId) => {
     });
 };
 
-const refreshCurrentOffer = async () => {
-    const offer = await getCurrentOffer();
-    const offerEl = document.querySelector('.offer');
 
-    offerEl.querySelector('.total').textContent = `${offer.total} PLN`;
-    //offerEl.querySelector('.itemsCount').textContent = `${offer.productsCount} items`;
-
-}
 
 const createHtmlElFromString = (template) => {
     let parent = document.createElement("div");
@@ -102,7 +127,8 @@ const createProductComponent = (product) => {
 }
 
 const initializeAddToCartHandler = (el) => {
-    el.addEventListener('click', (e) => {
+    const addToCartButton = el.querySelector('button')
+    addToCartButton.addEventListener('click', (e) => {
         let button = e.target;
         const productId = button.getAttribute('data-product-id');
 
@@ -116,23 +142,6 @@ const initializeAddToCartHandler = (el) => {
 }
 
 
-const initializeEcommerce = async () => {
-    await refreshCurrentOffer();
-    const {
-        host, hostname, href, origin, pathname, port, protocol, search
-    } = window.location
-
-    console.log(pathname);
-
-    const productsList = document.querySelector('#productsList');
-    const products = await getSortedProducts(pathname);
-    products.map(p => createProductComponent(p))
-        .map(productEl => initializeAddToCartHandler(productEl))
-        .forEach(productEl => {
-            productsList.appendChild(productEl)
-        });
-
-}
 
 const acceptOfferBtn = document.querySelector('.acceptOffer');
 const checkoutLayerEl = document.querySelector('#checkout');

@@ -35,17 +35,17 @@ public class App {
 
         String productId1 = productCatalog.addProduct("Falcon Millennium", "/lego");
         productCatalog.assignImage(productId1, "/image/lego_set.png");
-        productCatalog.changePrice(productId1, BigDecimal.TEN);
+        productCatalog.changePrice(productId1, BigDecimal.valueOf(4499));
         productCatalog.publishProduct(productId1);
 
         String productId2 = productCatalog.addProduct("Orange", "/fruits");
         productCatalog.assignImage(productId2, "/image/orange.jpg");
-        productCatalog.changePrice(productId2, BigDecimal.valueOf(20.20));
+        productCatalog.changePrice(productId2, BigDecimal.valueOf(49));
         productCatalog.publishProduct(productId2);
 
         String productId3 = productCatalog.addProduct("Paper clip", "/paper-clip");
         productCatalog.assignImage(productId3, "/image/paperclips.jpg");
-        productCatalog.changePrice(productId3, BigDecimal.valueOf(30.30));
+        productCatalog.changePrice(productId3, BigDecimal.valueOf(99));
         productCatalog.publishProduct(productId3);
 
         return productCatalog;
