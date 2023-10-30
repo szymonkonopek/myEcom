@@ -6,6 +6,7 @@
 
     <groupId>pl.jkanclerz</groupId>
     <artifactId>my-ecommerce</artifactId>
+    <packaging>jar</packaging>
     <version>0.1</version>
 
     <parent>
@@ -81,10 +82,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <mainClass>com.baeldung.demo.DemoApplication</mainClass>
-                    <layout>JAR</layout>
-                </configuration>
             </plugin>
         </plugins>
     </build>
